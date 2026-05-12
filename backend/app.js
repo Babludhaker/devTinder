@@ -8,7 +8,7 @@ const cors = require("cors");
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://dev-tinder-rust.vercel.app",
+  "https://dev-tinder-ofical.vercel.app",
 ];
 
 app.use(
