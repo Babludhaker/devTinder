@@ -6,9 +6,20 @@ const dotenv = require("dotenv");
 dotenv.config({});
 const cors = require("cors");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://dev-tinder-rust.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
