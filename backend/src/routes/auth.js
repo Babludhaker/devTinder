@@ -23,12 +23,11 @@ authRouter.post("/signup", async (req, res) => {
     //Encrypt the password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const checkEmail=await User.findOne({emailId});
-    console.log(checkEmail)
-    if(checkEmail){
-      throw new Error("Email Already Exist")
+    const checkEmail = await User.findOne({ emailId });
+    console.log(checkEmail);
+    if (checkEmail) {
+      throw new Error("Email Already Exist");
     }
-
 
     const user = new User({
       firstName,
@@ -67,6 +66,10 @@ authRouter.post("/login", async (req, res) => {
     if (isValidPassword) {
       const token = await user.getjwt();
       res.cookie("token", token, {
+        httpOnly: true,
+
+        sameSite: "none",
+        secure: true,
         expires: new Date(Date.now() + 8 * 3600000),
       });
       res.status(200).json({ user });

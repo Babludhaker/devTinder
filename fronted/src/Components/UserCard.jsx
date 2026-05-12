@@ -401,7 +401,7 @@ const UserCard = ({ user, isEditable }) => {
       <div className="uc-card">
         {/* ── Image ── */}
         <div
-          className={`uc-image-wrap  ${isEditable ? "cursor-pointer" : ""}`}
+          className={`uc-image-wrap ${isEditable ? "cursor-pointer" : ""}`}
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
           onClick={() => {
@@ -411,6 +411,7 @@ const UserCard = ({ user, isEditable }) => {
           }}
         >
           <img src={previewURL} alt={`${firstName} ${lastName}`} />
+
           {isEditable && (
             <div className="uc-upload-overlay">
               <button
